@@ -172,8 +172,30 @@ const ReconnectingWebsocket = function(
             reconnectDelay = initReconnectionDelay(config);
             log('reconnectDelay:', reconnectDelay);
             retriesCount = 0;
+
+            // @hack: /!\ Workaround for STOMP integration
+            // Executes registered onopen callbacks and still pass tests
+            // Usage: rwsInstance.onopen = callback;
+            // STOMP version:
+            // https://github.com/jmesnil/stomp-websocket/blob/29db014acb710f5ec41f9ed5f6120a731a88d7a3/lib/stomp.js
+            if (this.onopen && !ws.onopen && !listeners.onopen) {
+                this.onopen();
+            }
+            // @endhack
         });
 
+
+        // @hack: /!\ Workaround for STOMP integration
+        // executes registered onmessage callbacks and still pass tests
+        // Usage: rwsInstance.onmessage = callback;
+        var _handleMessage = (msg: Event) => {
+            if (this.onmessage && !ws.onmessage && !listeners.onmessage) {
+                this.onmessage(msg);
+            }
+        };
+        ws.addEventListener('message', _handleMessage);
+        // @endhack
+        
         ws.addEventListener('close', handleClose);
 
         reassignEventListeners(ws, oldWs, listeners);

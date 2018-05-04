@@ -5,6 +5,10 @@
 
 WebSocket that will automatically reconnect if the connection is closed.
 
+## Added features to fork
+
+- Workaround for STOMP-websocket integration
+
 ## Features
 
 - Small (~150 LOC)
