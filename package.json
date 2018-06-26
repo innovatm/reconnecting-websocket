@@ -1,5 +1,5 @@
 {
-  "name": "reconnecting-websocket",
+  "name": "@innovatm/reconnecting-websocket",
   "version": "3.2.2",
   "description": "Reconnecting WebSocket",
   "main": "dist/index.js",
