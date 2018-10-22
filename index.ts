@@ -152,6 +152,7 @@ const ReconnectingWebsocket = function(
         const wsUrl = (typeof url === 'function') ? url() : url;
         ws = new (<any>config.constructor)(wsUrl, protocols);
 
+        clearTimeout(connectingTimeout);
         connectingTimeout = setTimeout(() => {
             log('timeout');
             ws.close();
