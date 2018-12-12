@@ -27,6 +27,29 @@ function __extends(d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 }
 
+function __read(o, n) {
+    var m = typeof Symbol === "function" && o[Symbol.iterator];
+    if (!m) return o;
+    var i = m.call(o), r, ar = [], e;
+    try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+    }
+    catch (error) { e = { error: error }; }
+    finally {
+        try {
+            if (r && !r.done && (m = i["return"])) m.call(i);
+        }
+        finally { if (e) throw e.error; }
+    }
+    return ar;
+}
+
+function __spread() {
+    for (var ar = [], i = 0; i < arguments.length; i++)
+        ar = ar.concat(__read(arguments[i]));
+    return ar;
+}
+
 var Event = /** @class */ (function () {
     function Event(type, target) {
         this.target = target;
@@ -58,12 +81,6 @@ var CloseEvent = /** @class */ (function (_super) {
     return CloseEvent;
 }(Event));
 
-/*!
- * Reconnecting WebSocket
- * by Pedro Ladaria <pedro.ladaria@gmail.com>
- * https://github.com/pladaria/reconnecting-websocket
- * License MIT
- */
 var getGlobalWebSocket = function () {
     if (typeof WebSocket !== 'undefined') {
         // @ts-ignore
@@ -386,7 +403,7 @@ var ReconnectingWebSocket = /** @class */ (function () {
         if (this._options.debug) {
             // not using spread because compiled version uses Symbols
             // tslint:disable-next-line
-            console.log.apply(console, ['RWS>'].concat(args));
+            console.log.apply(console, __spread(['RWS>'], args));
         }
     };
     ReconnectingWebSocket.prototype._getNextDelay = function () {
@@ -445,6 +462,7 @@ var ReconnectingWebSocket = /** @class */ (function () {
             .then(function (url) {
             // close could be called before creating the ws
             if (_this._closeCalled) {
+                _this._connectLock = false;
                 return;
             }
             _this._debug('connect', { url: url, protocols: _this._protocols });
