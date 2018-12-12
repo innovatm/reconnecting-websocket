@@ -1,16 +1,14 @@
 {
     "compilerOptions": {
-        "module": "commonjs",
+        "alwaysStrict": true,
+        "module": "ESNext",
+        "strict": true,
         "target": "es5",
-        "sourceMap": false,
-        "outDir": "dist",
+        "lib": [
+            "es6",
+            "dom"
+        ],
         "declaration": true,
-        "moduleResolution": "node",
-        "noImplicitAny": true
-    },
-    "exclude": [
-        "node_modules",
-        "dist",
-        "test"
-    ]
+        "downlevelIteration": true
+    }
 }
