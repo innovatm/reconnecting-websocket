@@ -59,7 +59,7 @@ export type ListenersMap = {
     open: Array<WebSocketEventListenerMap['open']>;
     close: Array<WebSocketEventListenerMap['close']>;
 };
-export default class ReconnectingWebSocket {
+export class ReconnectingWebSocket {
     private _ws?: WebSocket;
     private _listeners: ListenersMap = {
         error: [],
