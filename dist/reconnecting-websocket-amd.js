@@ -1,4 +1,4 @@
-define(function () { 'use strict';
+define(['exports'], function (exports) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation. All rights reserved.
@@ -540,6 +540,8 @@ define(function () { 'use strict';
         return ReconnectingWebSocket;
     }());
 
-    return ReconnectingWebSocket;
+    exports.ReconnectingWebSocket = ReconnectingWebSocket;
+
+    Object.defineProperty(exports, '__esModule', { value: true });
 
 });

@@ -1,4 +1,4 @@
-var ReconnectingWebSocket = (function () {
+var ReconnectingWebSocket = (function (exports) {
     'use strict';
 
     /*! *****************************************************************************
@@ -541,6 +541,8 @@ var ReconnectingWebSocket = (function () {
         return ReconnectingWebSocket;
     }());
 
-    return ReconnectingWebSocket;
+    exports.ReconnectingWebSocket = ReconnectingWebSocket;
 
-}());
+    return exports;
+
+}({}));

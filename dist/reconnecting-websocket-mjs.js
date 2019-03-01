@@ -538,4 +538,4 @@ var ReconnectingWebSocket = /** @class */ (function () {
     return ReconnectingWebSocket;
 }());
 
-export default ReconnectingWebSocket;
+export { ReconnectingWebSocket };

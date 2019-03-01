@@ -26,7 +26,7 @@ export declare type ListenersMap = {
     open: Array<WebSocketEventListenerMap['open']>;
     close: Array<WebSocketEventListenerMap['close']>;
 };
-export default class ReconnectingWebSocket {
+export declare class ReconnectingWebSocket {
     private _ws?;
     private _listeners;
     private _retryCount;
